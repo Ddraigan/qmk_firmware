@@ -18,7 +18,7 @@
 enum layers {
     _DVORAK = 0,
     _QWERTY,
-    _COLEMAK_DH,
+    // _COLEMAK_DH,
     _NAV,
     _SYM,
     _FUNCTION,
@@ -28,7 +28,7 @@ enum layers {
 
 // Aliases for readability
 #define QWERTY   DF(_QWERTY)
-#define COLEMAK  DF(_COLEMAK_DH)
+// #define COLEMAK  DF(_COLEMAK_DH)
 #define DVORAK   DF(_DVORAK)
 
 #define SYM      MO(_SYM)
@@ -40,6 +40,8 @@ enum layers {
 #define CTL_QUOT MT(MOD_RCTL, KC_QUOTE)
 #define CTL_MINS MT(MOD_RCTL, KC_MINUS)
 #define ALT_ENT  MT(MOD_LALT, KC_ENT)
+#define ALT_ESC  MT(MOD_LALT, KC_ESC)
+#define ALT_MINS  MT(MOD_RALT, KC_MINUS)
 
 // Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
@@ -63,36 +65,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ADJUST , KC_LGUI , ALT_ENT , KC_SPC  , NAV     ,         SYM   , KC_SPC  , KC_RALT , KC_RGUI , KC_APP
 ),
 
-//    ┌─────────┬───┬───┬────────┬──────┬─────────┐                                  ┌──────┬──────┬─────┬───┬───┬──────────┐
-//    │   tab   │ ' │ , │   .    │  p   │    y    │                                  │  f   │  g   │  c  │ r │ l │   bspc   │
-//    ├─────────┼───┼───┼────────┼──────┼─────────┤                                  ├──────┼──────┼─────┼───┼───┼──────────┤
-//    │ CTL_ESC │ a │ o │   e    │  u   │    i    │                                  │  d   │  h   │  t  │ n │ s │ CTL_MINS │
-//    ├─────────┼───┼───┼────────┼──────┼─────────┼─────┬──────┐       ┌───────┬─────┼──────┼──────┼─────┼───┼───┼──────────┤
-//    │  lsft   │ ; │ q │   j    │  k   │    x    │  [  │ caps │       │ FKEYS │  ]  │  b   │  m   │  w  │ v │ z │   rsft   │
-//    └─────────┴───┴───┼────────┼──────┼─────────┼─────┼──────┤       ├───────┼─────┼──────┼──────┼─────┼───┴───┴──────────┘
-//                      │ ADJUST │ lgui │ ALT_ENT │ spc │ NAV  │       │  SYM  │ spc │ ralt │ rgui │ app │
-//                      └────────┴──────┴─────────┴─────┴──────┘       └───────┴─────┴──────┴──────┴─────┘
+//    ┌─────────┬───┬───┬────────┬──────┬──────┐                                      ┌──────┬──────┬─────┬───┬───┬──────────┐
+//    │   tab   │ ' │ , │   .    │  p   │  y   │                                      │  f   │  g   │  c  │ r │ l │   bspc   │
+//    ├─────────┼───┼───┼────────┼──────┼──────┤                                      ├──────┼──────┼─────┼───┼───┼──────────┤
+//    │ ALT_ESC │ a │ o │   e    │  u   │  i   │                                      │  d   │  h   │  t  │ n │ s │ ALT_MINS │
+//    ├─────────┼───┼───┼────────┼──────┼──────┼─────┬──────┐       ┌───────┬─────────┼──────┼──────┼─────┼───┼───┼──────────┤
+//    │  lctl   │ ; │ q │   j    │  k   │  x   │  [  │ caps │       │ FKEYS │    ]    │  b   │  m   │  w  │ v │ z │   rctl   │
+//    └─────────┴───┴───┼────────┼──────┼──────┼─────┼──────┤       ├───────┼─────────┼──────┼──────┼─────┼───┴───┴──────────┘
+//                      │ ADJUST │ lgui │ lsft │ spc │ NAV  │       │  SYM  │ ALT_ENT │ rsft │ rgui │ app │
+//                      └────────┴──────┴──────┴─────┴──────┘       └───────┴─────────┴──────┴──────┴─────┘
 [_DVORAK] = LAYOUT(
   KC_TAB  , KC_QUOTE , KC_COMM , KC_DOT , KC_P    , KC_Y    ,                                               KC_F    , KC_G    , KC_C   , KC_R , KC_L , KC_BSPC ,
-  CTL_ESC , KC_A     , KC_O    , KC_E   , KC_U    , KC_I    ,                                               KC_D    , KC_H    , KC_T   , KC_N , KC_S , CTL_MINS,
-  KC_LSFT , KC_SCLN  , KC_Q    , KC_J   , KC_K    , KC_X    , KC_LBRC , KC_CAPS ,         FKEYS , KC_RBRC , KC_B    , KC_M    , KC_W   , KC_V , KC_Z , KC_RSFT ,
-                                 ADJUST , KC_LGUI , ALT_ENT , KC_SPC  , NAV     ,         SYM   , KC_SPC  , KC_RALT , KC_RGUI , KC_APP
-),
-
-//    ┌─────────┬───┬───┬────────┬──────┬─────────┐                                  ┌──────┬──────┬─────┬───┬───┬──────────┐
-//    │   tab   │ q │ w │   f    │  p   │    b    │                                  │  j   │  l   │  u  │ y │ ; │   bspc   │
-//    ├─────────┼───┼───┼────────┼──────┼─────────┤                                  ├──────┼──────┼─────┼───┼───┼──────────┤
-//    │ CTL_ESC │ a │ r │   s    │  t   │    g    │                                  │  m   │  n   │  e  │ i │ o │ CTL_QUOT │
-//    ├─────────┼───┼───┼────────┼──────┼─────────┼─────┬──────┐       ┌───────┬─────┼──────┼──────┼─────┼───┼───┼──────────┤
-//    │  lsft   │ z │ x │   c    │  d   │    v    │  [  │ caps │       │ FKEYS │  ]  │  k   │  h   │  ,  │ . │ / │   rsft   │
-//    └─────────┴───┴───┼────────┼──────┼─────────┼─────┼──────┤       ├───────┼─────┼──────┼──────┼─────┼───┴───┴──────────┘
-//                      │ ADJUST │ lgui │ ALT_ENT │ spc │ NAV  │       │  SYM  │ spc │ ralt │ rgui │ app │
-//                      └────────┴──────┴─────────┴─────┴──────┘       └───────┴─────┴──────┴──────┴─────┘
-[_COLEMAK_DH] = LAYOUT(
-  KC_TAB  , KC_Q , KC_W , KC_F   , KC_P    , KC_B    ,                                               KC_J    , KC_L    , KC_U    , KC_Y   , KC_SCLN , KC_BSPC ,
-  CTL_ESC , KC_A , KC_R , KC_S   , KC_T    , KC_G    ,                                               KC_M    , KC_N    , KC_E    , KC_I   , KC_O    , CTL_QUOT,
-  KC_LSFT , KC_Z , KC_X , KC_C   , KC_D    , KC_V    , KC_LBRC , KC_CAPS ,         FKEYS , KC_RBRC , KC_K    , KC_H    , KC_COMM , KC_DOT , KC_SLSH , KC_RSFT ,
-                          ADJUST , KC_LGUI , ALT_ENT , KC_SPC  , NAV     ,         SYM   , KC_SPC  , KC_RALT , KC_RGUI , KC_APP
+  ALT_ESC , KC_A     , KC_O    , KC_E   , KC_U    , KC_I    ,                                               KC_D    , KC_H    , KC_T   , KC_N , KC_S , ALT_MINS,
+  KC_LCTL , KC_SCLN  , KC_Q    , KC_J   , KC_K    , KC_X    , KC_LBRC , KC_CAPS ,         FKEYS , KC_RBRC , KC_B    , KC_M    , KC_W   , KC_V , KC_Z , KC_RCTL ,
+                                 ADJUST , KC_LGUI , KC_LSFT , KC_SPC  , NAV     ,         SYM   , ALT_ENT , KC_RSFT , KC_RGUI , KC_APP
 ),
 
 //    ┌─────┬──────┬──────┬──────┬──────┬─────┐                                ┌──────┬──────┬──────┬──────┬──────┬──────┐
@@ -143,19 +129,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              _______ , _______ , _______ , _______ , _______ ,         _______ , _______ , _______ , _______ , _______
 ),
 
-//    ┌─────┬─────┬─────┬─────────┬─────┬─────┐                               ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────┐
-//    │     │     │     │ QWERTY  │     │     │                               │         │         │         │         │         │     │
-//    ├─────┼─────┼─────┼─────────┼─────┼─────┤                               ├─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │     │     │ DVORAK  │     │     │                               │ RM_TOGG │ RM_SATU │ RM_HUEU │ RM_VALU │ RM_NEXT │     │
-//    ├─────┼─────┼─────┼─────────┼─────┼─────┼─────┬─────┐       ┌─────┬─────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
-//    │     │     │     │ COLEMAK │     │     │     │     │       │     │     │         │ RM_SATD │ RM_HUED │ RM_VALD │ RM_PREV │     │
-//    └─────┴─────┴─────┼─────────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────────┼─────────┼─────────┼─────────┴─────────┴─────┘
-//                      │         │     │     │     │     │       │     │     │         │         │         │
-//                      └─────────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────────┴─────────┴─────────┘
+//    ┌─────┬─────┬─────┬────────┬─────┬─────┐                               ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────┐
+//    │     │     │     │ QWERTY │     │     │                               │         │         │         │         │         │     │
+//    ├─────┼─────┼─────┼────────┼─────┼─────┤                               ├─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
+//    │     │     │     │ DVORAK │     │     │                               │ RM_TOGG │ RM_SATU │ RM_HUEU │ RM_VALU │ RM_NEXT │     │
+//    ├─────┼─────┼─────┼────────┼─────┼─────┼─────┬─────┐       ┌─────┬─────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────┤
+//    │     │     │     │        │     │     │     │     │       │     │     │         │ RM_SATD │ RM_HUED │ RM_VALD │ RM_PREV │     │
+//    └─────┴─────┴─────┼────────┼─────┼─────┼─────┼─────┤       ├─────┼─────┼─────────┼─────────┼─────────┼─────────┴─────────┴─────┘
+//                      │        │     │     │     │     │       │     │     │         │         │         │
+//                      └────────┴─────┴─────┴─────┴─────┘       └─────┴─────┴─────────┴─────────┴─────────┘
 [_ADJUST] = LAYOUT(
   _______ , _______ , _______ , QWERTY  , _______ , _______ ,                                                 _______ , _______ , _______ , _______ , _______ , _______,
   _______ , _______ , _______ , DVORAK  , _______ , _______ ,                                                 RM_TOGG , RM_SATU , RM_HUEU , RM_VALU , RM_NEXT , _______,
-  _______ , _______ , _______ , COLEMAK , _______ , _______ , _______ , _______ ,         _______ , _______ , _______ , RM_SATD , RM_HUED , RM_VALD , RM_PREV , _______,
+  _______ , _______ , _______ , _______ , _______ , _______ , _______ , _______ ,         _______ , _______ , _______ , RM_SATD , RM_HUED , RM_VALD , RM_PREV , _______,
                                 _______ , _______ , _______ , _______ , _______ ,         _______ , _______ , _______ , _______ , _______
 )
 };
