@@ -16,6 +16,9 @@
 
 #pragma once
 
+#define SPLIT_WPM_ENABLE
+#define SPLIT_OLED_ENABLE
+
 #ifdef RGBLIGHT_ENABLE
 #    define RGBLIGHT_EFFECT_BREATHING
 #    define RGBLIGHT_EFFECT_RAINBOW_MOOD
